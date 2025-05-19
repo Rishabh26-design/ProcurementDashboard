@@ -478,6 +478,7 @@
                 transform: rotate(0);
             }
         }
+
         /* Bell Icon End*/
 
         .table-hover>tbody>tr:hover>* {
@@ -751,6 +752,10 @@
                         </div>
                         <!-- <div class="chart-container">
                             <canvas id="pipelineChart"></canvas>
+                        </div> -->
+                        <!-- <div class="progress" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="${stageNames[stage]}: ${value}%">
+                            <div class="progress-bar ${bgClass}" style="width: ${value}%">${value}%</div>
                         </div> -->
                         <div class="table-responsive mt-4">
                             <table class="table table-sm table-hover" id="progressTable">
@@ -1446,6 +1451,18 @@
                     return;
                 }
 
+                // Stage names for tooltips
+                const stageNames = {
+                    initiate: 'Initiation',
+                    qtyApproval: 'Quantity Approval',
+                    reqFinalize: 'Request Finalization',
+                    tender: 'Tender Process',
+                    vendorApproval: 'Vendor Approval',
+                    workOrder: 'Work Order',
+                    delivery: 'Delivery',
+                    completion: 'Completion'
+                };
+
                 data.forEach(item => {
                     const row = document.createElement('tr');
 
@@ -1467,7 +1484,8 @@
                         else if (value > 0) bgClass = 'bg-danger';
 
                         cell.innerHTML = `
-                        <div class="progress">
+                        <div class="progress" data-bs-toggle="tooltip" data-bs-placement="top" 
+                             title="${stageNames[stage]}: ${value}%">
                             <div class="progress-bar ${bgClass}" style="width: ${value}%">${value}%</div>
                         </div>
                     `;
@@ -1476,6 +1494,12 @@
                     });
 
                     tableBody.appendChild(row);
+                });
+
+                // Initialize Bootstrap tooltips
+                const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
                 });
             }
 
