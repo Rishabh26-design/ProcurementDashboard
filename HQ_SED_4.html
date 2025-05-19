@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+    <style>
+        .card {
+            transition: all 0.3s ease-in;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+
+        }
+
+        .highcharts-figure,
+        .highcharts-data-table table {
+            min-width: auto;
+            max-width: 800px;
+            margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #ebebeb;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td,
+        .highcharts-data-table th,
+        .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr,
+        .highcharts-data-table tbody tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+
+        .alert {
+            --bs-alert-padding-x: 0.3rem !important;
+            --bs-alert-padding-y: 0.3rem !important;
+        }
+
+        .table {
+            padding: 0.2rem !important;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <div class="container-fluid py-2">
+        <h3 class=" mb-4 p-2 fw-bold text-light "
+            style="background: linear-gradient(70deg,rgba(217, 59, 59, 1) 0%, rgba(255, 128, 48, 1) 100%) !important;">
+            Procurement Dashboard (HQ/SED)</h3>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class=" col-md-4  p-2 fw-bold" Style="background-Color:#dfdfdf;">Pending Tasks</h5>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <label class="text-black text-center" for="year">Select Division :</label>
+                                <select class="ml-2 p-1 rounded" id="year">
+                                    <option>All</option>
+                                    <option value="#">Gwalior</option>
+                                    <option value="#">Chambal</option>
+                                    <option value="#">Indore</option>
+                                    <option value="#">Ujjain</option>
+                                    <option value="#">Bhopal</option>
+                                    <option value="#">Narmadapuram</option>
+                                    <option value="#">Sagar</option>
+                                    <option value="#">Rewa</option>
+                                    <option value="#">Shahdol</option>
+                                    <option value="#">Jabalpur</option>
+                                </select>
+                            </div>
+                        </div>
+                        <figure class="highcharts-figure">
+                            <div id="Pendingtask" Style="height:320px"></div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class="col-md-5 fw-bold p-2" Style="background-Color:#dfdfdf;">Alerts & Notifications
+                            </h5>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-6">
+                                <label class="text-black text-center" for="year">Select Division :</label>
+                                <select class="ml-2 p-1 rounded" id="year">
+                                    <option>All</option>
+                                    <option value="#">Gwalior</option>
+                                    <option value="#">Chambal</option>
+                                    <option value="#">Indore</option>
+                                    <option value="#">Ujjain</option>
+                                    <option value="#">Bhopal</option>
+                                    <option value="#">Narmadapuram</option>
+                                    <option value="#">Sagar</option>
+                                    <option value="#">Rewa</option>
+                                    <option value="#">Shahdol</option>
+                                    <option value="#">Jabalpur</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-5">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <figure class="highcharts-figure">
+                                    <div id="alerts" Style="height:320px"></div>
+                                </figure>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-danger">2 critical</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="alert alert-danger mb-1">
+                                            <strong>Critical:</strong> Payment delay for AAFIYA ENTERPRISES (7 days overdue)
+                                        </div>
+                                        <div class="alert alert-danger mb-1">
+                                            <strong>Critical:</strong> Delivery gap in Gwalior Division (35% short)
+                                        </div>
+                                        <div class="alert alert-warning mb-1">
+                                            <strong>Warning:</strong> Quality issue reported with KABIR ENTERPRISES
+                                        </div>
+                                        <div class="alert alert-secondary mb-1">
+                                            <strong>Info:</strong> New SL/DEO submission received
+                                        </div>
+                                        <div class="alert alert-warning mb-1">
+                                            <strong>Warning:</strong> Contract expiration for FAREED TRADING CO. in 15 days
+                                        </div>
+                                        <div class="alert  alert-secondary mb-1">
+                                            <strong>Info:</strong> Quarterly audit scheduled for next week
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class="col-md-5 fw-bold p-2" Style="background-Color:#dfdfdf;">Procurement Pipeline
+                            </h5>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-6">
+                                <label class="text-black text-center" for="year">Select Division :</label>
+                                <select class="ml-2 p-1 rounded" id="year">
+                                    <option>All</option>
+                                    <option value="#">Gwalior</option>
+                                    <option value="#">Chambal</option>
+                                    <option value="#">Indore</option>
+                                    <option value="#">Ujjain</option>
+                                    <option value="#">Bhopal</option>
+                                    <option value="#">Narmadapuram</option>
+                                    <option value="#">Sagar</option>
+                                    <option value="#">Rewa</option>
+                                    <option value="#">Shahdol</option>
+                                    <option value="#">Jabalpur</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <div class="chart-container">
+                            <canvas id="pipelineChart"></canvas>
+                        </div> -->
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Procurement ID</th>
+                                        <th>Initiate</th>
+                                        <th>Qty. Approval</th>
+                                        <th>Req. Finalize</th>
+                                        <th>Tender</th>
+                                        <th>Vendor Approval</th>
+                                        <th>Work Order</th>
+                                        <th>Delivery</th>
+                                        <th>Completion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PCH-G/2025/001</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 90%">90%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 40%">40%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" style="width: 15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 5%">5%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 25%">25%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width:15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 50%">50%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/002</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 100%">100%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 85%">85%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 60%">60%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 40%">40%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/003</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 60%">60%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 20%">20%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/004</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 90%">90%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 40%">40%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" style="width: 15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 5%">5%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 25%">25%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width:15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 50%">50%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/005</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 100%">100%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 85%">85%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 60%">60%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 40%">40%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/006</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 60%">60%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 20%">20%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/007</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 90%">90%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 40%">40%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" style="width: 15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 5%">5%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 25%">25%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width:15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 50%">50%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/008</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 100%">100%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 85%">85%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 60%">60%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 40%">40%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCH-G/2025/009</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" style="width: 60%">60%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" style="width: 30%">30%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 15%">15%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" style="width: 20%">20%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class=" col-md-5 fw-bold p-2" Style="background-Color:#dfdfdf;">Issue Heatmap</h5>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-6">
+                                <label class="text-black text-center" for="year">Select Division :</label>
+                                <select class="ml-2 p-1 rounded" id="year">
+                                    <option>All</option>
+                                    <option value="#">Gwalior</option>
+                                    <option value="#">Chambal</option>
+                                    <option value="#">Indore</option>
+                                    <option value="#">Ujjain</option>
+                                    <option value="#">Bhopal</option>
+                                    <option value="#">Narmadapuram</option>
+                                    <option value="#">Sagar</option>
+                                    <option value="#">Rewa</option>
+                                    <option value="#">Shahdol</option>
+                                    <option value="#">Jabalpur</option>
+                                </select>
+                            </div>
+                        </div>
+                        <figure class="highcharts-figure">
+                            <div id="container" Style="height:320px"></div>
+                        </figure>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card shadow" id="qualityCard">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class="col-md-5 fw-bold card-title p-2" Style="background-Color:#dfdfdf;">Quality Checks
+                                Overview</h5>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-6">
+                                <label class="text-black" for="year">Select District :</label>
+                                <select class="ml-2 p-1 rounded bg-grey-500" id="year">
+                                    <option>All</option>
+                                    <option value="#">Agar Malwa</option>
+                                    <option value="#">Alirajpur</option>
+                                    <option value="#">Anuppur</option>
+                                    <option value="#">Ashoknagar</option>
+                                    <option value="#">Balaghat</option>
+                                    <option value="#">Barwani</option>
+                                    <option value="#">Betul</option>
+                                    <option value="#">Bhind</option>
+                                    <option value="#">Bhopal</option>
+                                    <option value="#">Burhanpur</option>
+                                    <option value="#">Chhatarpur</option>
+                                    <option value="#">Chhindwara</option>
+                                    <option value="#">Damoh</option>
+                                    <option value="#">Datia</option>
+                                    <option value="#">Dewas</option>
+                                    <option value="#">Dhar</option>
+                                    <option value="#">Dindori</option>
+                                    <option value="#">Guna</option>
+                                    <option value="#">Gwalior</option>
+                                    <option value="#">Harda</option>
+                                    <option value="#">Indore</option>
+                                    <option value="#">Jabalpur</option>
+                                    <option value="#">Jhabua</option>
+                                    <option value="#">Katni</option>
+                                    <option value="#">Khandwa </option>
+                                    <option value="#">Mandla</option>
+                                    <option value="#">Mandsaur</option>
+                                    <option value="#">Morena</option>
+                                    <option value="#">Narsinghpur</option>
+                                    <option value="#">Neemuch</option>
+                                    <option value="#">Panna</option>
+                                    <option value="#">Raisen</option>
+                                    <option value="#">Ratlam</option>
+                                    <option value="#">Rewa</option>
+                                    <option value="#">Sagar</option>
+                                    <option value="#">Satna</option>
+                                    <option value="#">Sehore</option>
+                                    <option value="#">Seoni</option>
+                                    <option value="#">Shahdol</option>
+                                    <option value="#">Shivpuri</option>
+                                    <option value="#">Sidhi</option>
+                                    <option value="#">Singrauli</option>
+                                    <option value="#">Tikamgarh</option>
+                                    <option value="#">Ujjain</option>
+                                    <option value="#">Vidisha</option>
+                                    <option value="#">Niwari</option>
+                                    <option value="#">Pandhurna</option>
+                                    <option value="#">Maihar</option>
+                                    <option value="#">Mauganj</option>
+                                </select>
+                            </div>
+                        </div>
+                        <figure class="highcharts-figure">
+                            <div id="quality" Style="height:320px"></div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class="col-md-4 fw-bold card-title p-2" Style="background-Color:#dfdfdf;">Vendor
+                                Dashboard</h5>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <label class="text-black text-center" for="year">Select Division :</label>
+                                <select class="ml-2 p-1 rounded" id="year">
+                                    <option>All</option>
+                                    <option value="#">Gwalior</option>
+                                    <option value="#">Chambal</option>
+                                    <option value="#">Indore</option>
+                                    <option value="#">Ujjain</option>
+                                    <option value="#">Bhopal</option>
+                                    <option value="#">Narmadapuram</option>
+                                    <option value="#">Sagar</option>
+                                    <option value="#">Rewa</option>
+                                    <option value="#">Shahdol</option>
+                                    <option value="#">Jabalpur</option>
+                                </select>
+                            </div>
+                        </div>
+                        <figure class="highcharts-figure">
+                            <div id="trend" Style="height:320px"></div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card shadow h-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class="col-md-4 fw-bold card-title mb-4 p-2" Style="background-Color:#dfdfdf;">Financial
+                                Summary</h5>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <label class="text-black text-center" for="year">Select Division :</label>
+                                <select class="ml-2 p-1 rounded" id="year">
+                                    <option>All</option>
+                                    <option value="#">Gwalior</option>
+                                    <option value="#">Chambal</option>
+                                    <option value="#">Indore</option>
+                                    <option value="#">Ujjain</option>
+                                    <option value="#">Bhopal</option>
+                                    <option value="#">Narmadapuram</option>
+                                    <option value="#">Sagar</option>
+                                    <option value="#">Rewa</option>
+                                    <option value="#">Shahdol</option>
+                                    <option value="#">Jabalpur</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-5">
+                            <!-- Bar Chart -->
+                            <div class="col-md-4 mb-3 mb-md-0">
+                                <figure class="highcharts-figure">
+                                    <div id="financial" Style="height:320px"></div>
+                                </figure>
+                            </div>
+
+                            <!-- Data Table -->
+                            <div class="col-md-8">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered ">
+                                        <thead class="table-primary text-center fs-6 ">
+                                            <tr>
+                                                <th>Vendor Name</th>
+                                                <th>Item Category</th>
+                                                <th>Item Name</th>
+                                                <th>Delevery Date</th>
+                                                <th>Order Qty.</th>
+                                                <th>Total Recive Qty.</th>
+                                                <th>Item Rate</th>
+                                                <th>Amount</th>
+                                                <th>Total Penalty Amount</th>
+                                                <th>Net Payment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-start fs-6">
+                                            <tr>
+                                                <td>AAFIYA ENTERPRISES</td>
+                                                <td>Class Room Furniture</td>
+                                                <td>Chair for Class 9-12</td>
+                                                <td>16-05-2025</td>
+                                                <td class="text-end">200</td>
+                                                <td class="text-end">200</td>
+                                                <td class="text-end">1569.36</td>
+                                                <td class="text-end">313872</td>
+                                                <td class="text-end">40803.36</td>
+                                                <td class="text-end">273068.64</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>YASHWANT TRADING COMPANY</td>
+                                                <td>Class Room Furniture</td>
+                                                <td>Chair for Class 1-3 </td>
+                                                <td>16-05-2025</td>
+                                                <td class="text-end">200</td>
+                                                <td class="text-end">200</td>
+                                                <td class="text-end">1569.36</td>
+                                                <td class="text-end">313872</td>
+                                                <td class="text-end">101694.52</td>
+                                                <td class="text-end">212177.47</td>
+                                            </tr>
+                                            <tr>
+                                                <td>GANESH ENTERPRISES</td>
+                                                <td>Outdoor Play Equipment</td>
+                                                <td>Dining Chairs for Class 3-5</td>
+                                                <td>16-05-2025</td>
+                                                <td class="text-end">163</td>
+                                                <td class="text-end">163</td>
+                                                <td class="text-end">14785.33</td>
+                                                <td class="text-end">2410008.79</td>
+                                                <td class="text-end">28387.83</td>
+                                                <td class="text-end">2381620.95</td>
+                                            </tr>
+                                            <tr>
+                                                <td>KABIR ENTERPRISES</td>
+                                                <td>Class Room Furniture</td>
+                                                <td>Chair for Class 9-12</td>
+                                                <td>16-05-2025</td>
+                                                <td class="text-end">200</td>
+                                                <td class="text-end">200</td>
+                                                <td class="text-end">1569.36</td>
+                                                <td class="text-end">313872</td>
+                                                <td class="text-end">40803.36</td>
+                                                <td class="text-end">273068.64</td>
+                                            </tr>
+                                            <tr>
+                                                <td>FAREED ENTERPRISES</td>
+                                                <td>Class Room Furniture</td>
+                                                <td>Chair</td>
+                                                <td>16-05-2025</td>
+                                                <td class="text-end">163</td>
+                                                <td class="text-end">163</td>
+                                                <td class="text-end">14785.33</td>
+                                                <td class="text-end">2410008.79</td>
+                                                <td class="text-end">28387.83</td>
+                                                <td class="text-end">2381620.95</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot class="table-light fw-bold text-end">
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total</td>
+                                                <td class="text-end">926</td>
+                                                <td class="text-end">926</td>
+                                                <td></td>
+                                                <td class="text-end">5761633.58</td>
+                                                <td class="text-end">396744.84</td>
+                                                <td class="text-end">5364888.73</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Issue Heatmap Start -->
+    <script>
+        Highcharts.Templating.helpers.substr = (s, from, length) =>
+            s.substr(from, length);
+
+        Highcharts.chart('container', {
+
+            chart: {
+                type: 'heatmap',
+                marginTop: 40,
+                marginBottom: 80,
+                plotBorderWidth: 1
+            },
+
+
+            title: {
+                text: '',
+                style: {
+                    fontSize: '1em'
+                }
+            },
+
+            xAxis: {
+                categories: [
+                    'Bhopal', 'Raisen', 'Vidisha', 'Ujjain', 'Indore',
+                    'Sidhi', 'Betul', 'Harda', 'Barwani', 'Maihar'
+                ]
+            },
+
+            yAxis: {
+                categories: ['Sk Construction', 'Rajeev Builcon', 'Sumitra Con.', 'Vasudha Build', 'Rion Ltd.'],
+                title: null,
+                reversed: true
+            },
+
+            accessibility: {
+                point: {
+                    descriptionFormat: '{(add index 1)}. ' +
+                        '{series.xAxis.categories.(x)} sales ' +
+                        '{series.yAxis.categories.(y)}, {value}.'
+                }
+            },
+
+            colorAxis: {
+                min: 0,
+                minColor: '#FFFFFF',
+                maxColor: Highcharts.getOptions().colors[0]
+            },
+
+            legend: {
+                align: 'right',
+                layout: 'vertical',
+                margin: 0,
+                verticalAlign: 'top',
+                y: 25,
+                symbolHeight: 280
+            },
+
+            tooltip: {
+                format: '<b>{series.xAxis.categories.(point.x)}</b> facing<br>' +
+                    '<b>{point.value}</b> issues on <br>' +
+                    '<b>{series.yAxis.categories.(point.y)}</b>'
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Sales per employee',
+                borderWidth: 1,
+                data: [
+                    [0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67],
+                    [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48],
+                    [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52],
+                    [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16],
+                    [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115],
+                    [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120],
+                    [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96],
+                    [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30],
+                    [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84],
+                    [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]
+                ],
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000'
+                }
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        yAxis: {
+                            labels: {
+                                format: '{substr value 0 1}'
+                            }
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+    <!-- Issue Heatmap End -->
+
+    <!-- Quality Check Start -->
+    <script>
+        Highcharts.chart('quality', {
+            chart: {
+                type: 'pie',
+                custom: {},
+                events: {
+                    render() {
+                        const chart = this,
+                            series = chart.series[0];
+                        let customLabel = chart.options.chart.custom.label;
+
+                        if (!customLabel) {
+                            customLabel = chart.options.chart.custom.label =
+                                chart.renderer.label(
+
+                                )
+                                    .css({
+                                        color: '#000',
+                                        textAnchor: 'middle'
+                                    })
+                                    .add();
+                        }
+
+                        const x = series.center[0] + chart.plotLeft,
+                            y = series.center[1] + chart.plotTop -
+                                (customLabel.attr('height') / 2);
+
+                        customLabel.attr({
+                            x,
+                            y
+                        });
+                        customLabel.css({
+                            fontSize: `${series.center[2] / 12}px`
+                        });
+                    }
+                }
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    borderRadius: 8,
+                    dataLabels: [{
+                        enabled: true,
+                        distance: 20,
+                        format: '{point.name}'
+                    }, {
+                        enabled: true,
+                        distance: -15,
+                        format: '{point.percentage:.0f}%',
+                        style: {
+                            fontSize: '0.9em'
+                        }
+                    }],
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Registrations',
+                colorByPoint: true,
+                innerSize: '75%',
+                data: [{
+                    name: 'Issue Reopened',
+                    y: 23.9
+                }, {
+                    name: 'Issue Pending',
+                    y: 12.6
+                }, {
+                    name: 'Issue Resolved',
+                    y: 37.0
+                }, {
+                    name: 'Issue in Pipeline ',
+                    y: 26.4
+                }]
+            }]
+        });
+
+    </script>
+
+    <!-- Quality Check End -->
+
+    <!-- Vendor Dashboard Start-->
+    <Script>
+
+        Highcharts.chart('trend', {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Bhopal', 'Raisen', 'Vidisha', 'Ujjain', 'Indore',
+                    'Sidhi', 'Betul', 'Harda', 'Barwani', 'Maihar', 'Jabalpur', 'Rewa'
+                ],
+                accessibility: {
+                    description: 'Months of the year'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Vendor Performance %'
+                },
+                labels: {
+                    format: '{value}%'
+                }
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        radius: 4,
+                        lineColor: '#666666',
+                        lineWidth: 1
+                    }
+                }
+            },
+            series: [{
+                name: 'Sk Construction',
+                marker: {
+                    symbol: 'square'
+                },
+                data: [20.2, 1.7, 7.7, 1.9, 8.2, 25.4, 30.0, {
+                    y: 26.4,
+                    marker: {
+                        symbol: ''
+                    },
+                    accessibility: {
+                        description: ''
+                    }
+                }, 22.8, 17.5, 12.1, 7.6]
+
+            },
+            {
+                name: 'Rajeev Builcon',
+                marker: {
+                    symbol: 'square'
+                },
+                data: [90.2, 40.7, 60.7, 73.9, 58.2, 20.4, 55.0, {
+                    y: 26.4,
+                    marker: {
+                        symbol: ''
+                    },
+                    accessibility: {
+                        description: ''
+                    }
+                }, 42.8, 79.5, 22.1, 82.6]
+
+            },
+            {
+                name: 'Vasudha Builcon',
+                marker: {
+                    symbol: 'square'
+                },
+                data: [50.2, 15.7, 18.7, 33.9, 28.2, 11.4, 35.0, {
+                    y: 26.4,
+                    marker: {
+                        symbol: ''
+                    },
+                    accessibility: {
+                        description: ''
+                    }
+                }, 32.8, 20.5, 32.1, 45.6]
+
+            },
+
+            {
+                name: 'Rion Ltd.',
+                marker: {
+                    symbol: 'square'
+                },
+                data: [35.2, 25.7, 35.7, 43.9, 48.2, 29.4, 38.0, {
+                    y: 26.4,
+                    marker: {
+                        symbol: ''
+                    },
+                    accessibility: {
+                        description: ''
+                    }
+                }, 32.8, 47.5, 32.1, 45.6]
+
+            },
+
+            {
+                name: 'Sumitra Con.',
+                marker: {
+                    symbol: 'square'
+                },
+                data: [{
+                    y: 1.5,
+                    marker: {
+                        symbol: ''
+                    },
+                    accessibility: {
+                        description: 'Snowy symbol, this is the coldest point in the ' +
+                            'chart.'
+                    }
+                }, 1.6, 3.3, 5.9, 10.5, 13.5, 14.5, 14.4, 11.5, 8.7, 4.7, 2.6]
+            }]
+        });
+
+    </Script>
+    <!-- Vendor Dashboard End -->
+
+    <!-- Pending Task Start -->
+    <Script>
+        Highcharts.chart('Pendingtask', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Procurement Level'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Procurement'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+                    '<b>{point.y:.2f}</b> of total<br/>'
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'Pending',
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: 'Total Procurement',
+                            y: 100,
+                            drilldown: 'Total Procurement'
+                        },
+                        {
+                            name: 'Procurement for School',
+                            y: 80,
+                            drilldown: 'Procurement for School'
+                        },
+                        {
+                            name: 'Procurement for Self',
+                            y: 20,
+                            drilldown: 'Procurement for Self'
+                        }
+                    ]
+                }
+            ]
+
+        });
+
+    </Script>
+    <!-- Pending Task End -->
+
+    <!-- Alert & Notification Start -->
+    <Script>
+        Highcharts.chart('alerts', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Vendor Name'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Severity In %'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+                    '<b>{point.y:.2f}%</b> of total<br/>'
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'Severity',
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: 'Sk Construction',
+                            y: 63.06,
+                            drilldown: 'Sk Construction'
+                        },
+                        {
+                            name: 'Rajeev Builcon',
+                            y: 19.84,
+                            drilldown: 'Rajeev Builcon'
+                        },
+                        {
+                            name: 'Sumitra Con.',
+                            y: 4.18,
+                            drilldown: 'Sumitra Con.'
+                        }
+                    ]
+                }
+            ]
+
+        });
+
+    </Script>
+    <!-- Alert & Notification End -->
+
+    <!-- Procurement Pipeline Start -->
+    <script>
+        const pipelineCtx = document.getElementById('pipelineChart').getContext('2d');
+        const pipelineChart = new Chart(pipelineCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Function 1', 'Function 2', 'Function 3'],
+                datasets: [
+                    {
+                        label: 'Planning',
+                        data: [90, 100, 75],
+                        backgroundColor: '#28a745'
+                    },
+                    {
+                        label: 'Bidding',
+                        data: [75, 85, 60],
+                        backgroundColor: '#17a2b8'
+                    },
+                    {
+                        label: 'Awarding',
+                        data: [40, 60, 30],
+                        backgroundColor: '#ffc107'
+                    },
+                    {
+                        label: 'Delivery',
+                        data: [15, 30, 10],
+                        backgroundColor: '#fd7e14'
+                    },
+                    {
+                        label: 'Completion',
+                        data: [5, 10, 2],
+                        backgroundColor: '#6c757d'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true,
+                        max: 100,
+                        min: 0
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+    </script>
+    <!-- Procurement Pipeline End -->
+
+    <!-- Financial Summary Start -->
+    <script>
+
+       Highcharts.chart('financial', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: '',
+        align: 'left'
+    },
+    xAxis: {
+        categories: [
+            'AAFIYA ENTERPRISES', 'YASHWANT TRADING', 'GANESH ENTERPRISES', 'Rajeev Builcon', 'FAREED ENTERPRISES'
+        ]
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: ''
+        },
+        labels: {
+            formatter: function() {
+                return (this.value / 100000).toFixed(2) + ' Lac'; // Convert to Lac and display with 2 decimal places
+            }
+        }
+    },
+    legend: {
+        reversed: true
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true,
+                formatter: function() {
+                    return (this.y / 100000).toFixed(2) + ' Lac'; // Also format data labels in Lac
+                }
+            }
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Penalty',
+        data: [408031.36, 201694.52, 283871.83, 408031.36, 283871.83]
+    }, {
+        name: 'Payment Pending',
+        data: [813872, 813872, 2410008.79, 313872, 2410008.79]
+    }, {
+        name: 'Payment Processed',
+        data: [2730681.64, 2121776.47, 2381620.95, 2731068.64, 2381620.95]
+    }]
+});
+
+    </script>
+    <!-- Financial Summary End -->
+
+</body>
+
+</html>
