@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procurement Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/heatmap.js"></script>
@@ -15,7 +16,7 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
 
     <style>
-        .card {
+        .card  {
             transition: all 0.3s ease-in;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
@@ -74,19 +75,228 @@
             --bs-alert-padding-y: 0.3rem !important;
         }
 
-        .table {
-            padding: 0.2rem !important;
+        @media (min-width: 576px) {
+            body {
+                padding: 16px;
+            }
         }
+
+        .card-purple {
+            background-color: #a05fff;
+        }
+         .card-purple-light {
+            background-color: #7435d3;
+        }
+
+        .card-blue-dark {
+            background-color: #1f6e99;
+        }
+        .card-blue-light {
+            background-color: #154864;
+        }
+
+        .card-green {
+            background-color: #3a8e3a;
+        }
+
+        .card-green-light {
+            background-color: #7ed37e;
+        }
+
+        .card-yellow {
+            background-color: #f0a91a;
+        }
+
+        .card-yellow-light {
+            background-color: #f9d06a;
+        }
+
+        .card-red {
+            background-color: #e94a4a;
+        }
+
+        .card-red-light {
+            background-color: #bb3030;
+        }
+
+        .card-skyblue {
+            background-color: #3a8eeb;
+        }
+        .card-skyblue-light {
+            background-color: #2465b1;
+        }
+
+        .card-teal {
+            background-color: #5bc6c0;
+        }
+        .card-teal-light {
+            background-color: #197772;
+        }
+
+        .status-card {
+            padding: 4px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+
+        @media (min-width: 576px) {
+            .status-card {
+                font-size: 0.875rem;
+            }
+        }
+        .Shad {
+           text-shadow: 0px 0px 3px rgba(0,0,0,0.38);
+
+        }
+        .shadow:hover{
+             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+             transition: all 0.3s ease-in;
+        }
+        
     </style>
 </head>
 
 <body class="bg-light">
     <div class="container-fluid py-2">
-        <h3 class=" mb-4 p-2 fw-bold text-light "
+        <div class="row d-flex"
             style="background: linear-gradient(70deg,rgba(217, 59, 59, 1) 0%, rgba(255, 128, 48, 1) 100%) !important;">
-            Procurement Dashboard (HQ/SED)</h3>
+            <div class="col-md-4">
+                <h3 class=" mb-2 p-1 fw-bold text-light">
+                    Procurement Dashboard (HQ/SED)</h3>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <label class="text-black fw-bold">Select Financial Year :</label>
+                <select class=" mt-2 p-1 rounded text-center">
 
-        <div class="row g-4">
+                    <option>2024-25</option>
+                    <option value="#">2024-25</option>
+                    <option value="#">2023-24</option>
+                    <option value="#">2022-23</option>
+                    <option value="#">2021-22</option>
+                </select>
+
+                <label class="text-black fw-bold">Select Quarter :</label>
+                <select class="mt-2 p-1 rounded">
+                    <option>All</option>
+                    <option value="#">Q1: April-June</option>
+                    <option value="#">Q2: July-September</option>
+                    <option value="#">Q3: Octuber-December</option>
+                    <option value="#">Q4: January-March</option>
+                </select>
+            </div>
+        </div>
+        <!-- Top Cards -->
+        <section class="row g-2 mb-1 mt-2">
+            <div class="col-6 col-md">
+                <div
+                    class="card-purple text-white rounded-3 p-3 d-flex flex-column align-items-center justify-content-center shadow">
+                    <div class="text-center fw-semibold Shad" style="font-size: 1rem">
+                        Total Procurement Request
+                    </div>
+                    <div class="fw-bold fs-5 mt-1 Shad card-purple-light rounded px-3 py-0">
+                        200 
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md">
+                <div
+                    class="card-blue-dark text-white rounded-3 p-3 d-flex flex-column align-items-center justify-content-center shadow">
+                    <div class="text-center fw-semibold Shad" style="font-size: 1rem">
+                        Procurement Approved
+                    </div>
+                    <div class="fw-bold fs-5 mt-1 Shad card-blue-light rounded px-3 py-0 ">
+                        180 
+                    </div>
+                </div>
+            </div>
+            <!-- Tender Processed -->
+            <div class="col-6 col-md">
+                <div class="mb-1 fw-semibold" style="font-size: 1rem">Tender Processed</div>
+                <div class="card-green text-white status-card d-flex justify-content-between align-items-center p-2 g-5">
+                    <span>Done :</span>
+                    <span class="card-green-light rounded px-2 py-0 text-black fw-bold">140</span>
+                </div>
+                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                    <span>Pending :</span>
+                    <span class="card-yellow-light rounded px-2 py-0 fw-bold">40</span>
+                </div>
+            </div>
+            <!-- Tender Finalization -->
+            <div class="col-6 col-md">
+                <div class="mb-1 fw-semibold" style="font-size: 1rem">Tender Finalization</div>
+                <div class="card-green text-white status-card d-flex justify-content-between align-items-center p-2">
+                    <span>Done :</span>
+                    <span class="card-green-light rounded px-2 py-0 text-black fw-bold">130</span>
+                </div>
+                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                    <span>Pending :</span>
+                    <span class="card-yellow-light rounded px-2 py-0 fw-bold">10</span>
+                </div>
+            </div>
+            <!-- Work Order -->
+            <div class="col-6 col-md">
+                <div class="mb-1 fw-semibold" style="font-size: 1rem">Work Order</div>
+                <div class="card-green text-white status-card d-flex justify-content-between align-items-center p-2 ">
+                    <span>Done :</span>
+                    <span class="card-green-light rounded px-2 py-0 text-black fw-bold">100</span>
+                </div>
+                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                    <span>Pending :</span>
+                    <span class="card-yellow-light rounded px-2 py-0 fw-bold">30</span>
+                </div>
+            </div>
+            <!-- Delivery/Status -->
+            <div class="col-6 col-md">
+                <div class="mb-1 fw-semibold" style="font-size: 1rem">Delivery/Status</div>
+                <div class="card-green text-white status-card d-flex justify-content-between align-items-center p-2">
+                    <span>Done :</span>
+                    <span class="card-green-light rounded px-2 py-0 text-black fw-bold">80</span>
+                </div>
+                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                    <span>Pending :</span>
+                    <span class="card-yellow-light rounded px-2 py-0 fw-bold">20</span>
+                </div>
+            </div>
+            <div class="col-6 col-md">
+                <div
+                    class="card-red text-white rounded-3 p-3 d-flex flex-column align-items-center justify-content-center shadow">
+                    <div class="text-center fw-semibold Shad" style="font-size:1rem">
+                        Total Procurement Payment
+                    </div>
+                    <div class="fw-bold fs-5 mt-1 Shad card-red-light rounded px-1 py-0">
+                         <i class="fa fa-rupee"></i>
+                        2,54,87,895
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md">
+                <div
+                    class="card-skyblue text-white rounded-3 p-3 d-flex flex-column align-items-center justify-content-center shadow">
+                    <div class="text-center fw-semibold Shad" style="font-size: 1rem">
+                        Total Procurement Penalty
+                    </div>
+                    <div class="fw-bold fs-5 mt-1 Shad card-skyblue-light rounded px-1 py-0">
+                         <i class="fa fa-rupee"></i>
+                        4,54,567
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md">
+                <div
+                    class="card-teal text-white rounded-3 p-3 d-flex flex-column align-items-center justify-content-center shadow">
+                    <div class="text-center fw-semibold Shad" style="font-size: 1rem">
+                        Total Payment Processed
+                    </div>
+                    <div class="fw-bold fs-5 mt-1 Shad card-teal-light rounded px-1 py-0">
+                        <i class="fa fa-rupee"></i>
+                        2,59,42,462
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="row g-4 mt-1">
             <div class="col-md-4">
                 <div class="card shadow">
                     <div class="card-body">
@@ -153,7 +363,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="alert alert-danger mb-1">
-                                            <strong>Critical:</strong> Payment delay for AAFIYA ENTERPRISES (7 days overdue)
+                                            <strong>Critical:</strong> Payment delay for AAFIYA ENTERPRISES (7 days
+                                            overdue)
                                         </div>
                                         <div class="alert alert-danger mb-1">
                                             <strong>Critical:</strong> Delivery gap in Gwalior Division (35% short)
@@ -165,7 +376,8 @@
                                             <strong>Info:</strong> New SL/DEO submission received
                                         </div>
                                         <div class="alert alert-warning mb-1">
-                                            <strong>Warning:</strong> Contract expiration for FAREED TRADING CO. in 15 days
+                                            <strong>Warning:</strong> Contract expiration for FAREED TRADING CO. in 15
+                                            days
                                         </div>
                                         <div class="alert  alert-secondary mb-1">
                                             <strong>Info:</strong> Quarterly audit scheduled for next week
@@ -240,7 +452,7 @@
                                         </td>
                                         <td>
                                             <div class="progress">
-                                                <div class="progress-bar bg-danger" style="width: 15%">15%</div>
+                                                <div class="progress-bar bg-danger" style="width: 55%">55%</div>
                                             </div>
                                         </td>
                                         <td>
@@ -1255,7 +1467,6 @@
                 title: {
                     text: 'Number of Procurement'
                 }
-
             },
             legend: {
                 enabled: false
@@ -1265,15 +1476,14 @@
                     borderWidth: 0,
                     dataLabels: {
                         enabled: true,
-                        format: '{point.y:.1f}'
+                        format: '{point.y:.0f}'  // Changed to show no decimal places
                     }
                 }
             },
-
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                 pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
-                    '<b>{point.y:.2f}</b> of total<br/>'
+                    '<b>{point.y:.0f}</b> of total<br/>'  // Changed to show no decimal places
             },
             credits: {
                 enabled: false
@@ -1301,7 +1511,6 @@
                     ]
                 }
             ]
-
         });
 
     </Script>
@@ -1448,62 +1657,62 @@
     <!-- Financial Summary Start -->
     <script>
 
-       Highcharts.chart('financial', {
-    chart: {
-        type: 'bar'
-    },
-    title: {
-        text: '',
-        align: 'left'
-    },
-    xAxis: {
-        categories: [
-            'AAFIYA ENTERPRISES', 'YASHWANT TRADING', 'GANESH ENTERPRISES', 'Rajeev Builcon', 'FAREED ENTERPRISES'
-        ]
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: ''
-        },
-        labels: {
-            formatter: function() {
-                return (this.value / 100000).toFixed(2) + ' Lac'; // Convert to Lac and display with 2 decimal places
-            }
-        }
-    },
-    legend: {
-        reversed: true
-    },
-    plotOptions: {
-        series: {
-            stacking: 'normal',
-            dataLabels: {
-                enabled: true,
-                formatter: function() {
-                    return (this.y / 100000).toFixed(2) + ' Lac'; // Also format data labels in Lac
+        Highcharts.chart('financial', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '',
+                align: 'left'
+            },
+            xAxis: {
+                categories: [
+                    'AAFIYA ENTERPRISES', 'YASHWANT TRADING', 'GANESH ENTERPRISES', 'Rajeev Builcon', 'FAREED ENTERPRISES'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                },
+                labels: {
+                    formatter: function () {
+                        return (this.value / 100000).toFixed(2) + ' Lac'; // Convert to Lac and display with 2 decimal places
+                    }
                 }
-            }
-        }
-    },
-    credits: {
-        enabled: false
-    },
-    series: [{
-        name: 'Penalty',
-        data: [408031.36, 201694.52, 283871.83, 408031.36, 283871.83]
-    }, {
-        name: 'Payment Pending',
-        data: [813872, 813872, 2410008.79, 313872, 2410008.79]
-    }, {
-        name: 'Payment Processed',
-        data: [2730681.64, 2121776.47, 2381620.95, 2731068.64, 2381620.95]
-    }]
-});
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return (this.y / 100000).toFixed(2) + ' Lac'; // Also format data labels in Lac
+                        }
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Penalty',
+                data: [408031.36, 201694.52, 283871.83, 408031.36, 283871.83]
+            }, {
+                name: 'Payment Pending',
+                data: [813872, 813872, 2410008.79, 313872, 2410008.79]
+            }, {
+                name: 'Payment Processed',
+                data: [2730681.64, 2121776.47, 2381620.95, 2731068.64, 2381620.95]
+            }]
+        });
 
     </script>
     <!-- Financial Summary End -->
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
