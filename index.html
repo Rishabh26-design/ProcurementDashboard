@@ -16,7 +16,7 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
 
     <style>
-        .card  {
+        .card {
             transition: all 0.3s ease-in;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
@@ -84,13 +84,15 @@
         .card-purple {
             background-color: #a05fff;
         }
-         .card-purple-light {
+
+        .card-purple-light {
             background-color: #7435d3;
         }
 
         .card-blue-dark {
             background-color: #1f6e99;
         }
+
         .card-blue-light {
             background-color: #154864;
         }
@@ -122,6 +124,7 @@
         .card-skyblue {
             background-color: #3a8eeb;
         }
+
         .card-skyblue-light {
             background-color: #2465b1;
         }
@@ -129,6 +132,7 @@
         .card-teal {
             background-color: #5bc6c0;
         }
+
         .card-teal-light {
             background-color: #197772;
         }
@@ -144,16 +148,341 @@
                 font-size: 0.875rem;
             }
         }
+
         .Shad {
-           text-shadow: 0px 0px 3px rgba(0,0,0,0.38);
+            text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.38);
 
         }
-        .shadow:hover{
-             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+
+        .shadow:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
             transform: translateY(-6px);
-             transition: all 0.3s ease-in;
+            transition: all 0.3s ease-in;
         }
-        
+
+        .chart-container {
+            position: relative;
+            height: 600px;
+            margin: 20px 0;
+        }
+
+        .progress-cell {
+            min-width: 100px;
+        }
+
+        /* Bell Icon Start*/
+
+        .bell {
+            display: block;
+            font-size: 20px;
+            margin: 0px auto 0;
+            color: #3a8eeb;
+            -webkit-animation: ring 4s .7s ease-in-out infinite;
+            -webkit-transform-origin: 50% 4px;
+            -moz-animation: ring 4s .7s ease-in-out infinite;
+            -moz-transform-origin: 50% 4px;
+            animation: ring 10s .7s ease-in-out infinite;
+            transform-origin: 50% 4px;
+        }
+
+        @-webkit-keyframes ring {
+            0% {
+                -webkit-transform: rotateZ(0);
+            }
+
+            1% {
+                -webkit-transform: rotateZ(30deg);
+            }
+
+            3% {
+                -webkit-transform: rotateZ(-28deg);
+            }
+
+            5% {
+                -webkit-transform: rotateZ(34deg);
+            }
+
+            7% {
+                -webkit-transform: rotateZ(-32deg);
+            }
+
+            9% {
+                -webkit-transform: rotateZ(30deg);
+            }
+
+            11% {
+                -webkit-transform: rotateZ(-28deg);
+            }
+
+            13% {
+                -webkit-transform: rotateZ(26deg);
+            }
+
+            15% {
+                -webkit-transform: rotateZ(-24deg);
+            }
+
+            17% {
+                -webkit-transform: rotateZ(22deg);
+            }
+
+            19% {
+                -webkit-transform: rotateZ(-20deg);
+            }
+
+            21% {
+                -webkit-transform: rotateZ(18deg);
+            }
+
+            23% {
+                -webkit-transform: rotateZ(-16deg);
+            }
+
+            25% {
+                -webkit-transform: rotateZ(14deg);
+            }
+
+            27% {
+                -webkit-transform: rotateZ(-12deg);
+            }
+
+            29% {
+                -webkit-transform: rotateZ(10deg);
+            }
+
+            31% {
+                -webkit-transform: rotateZ(-8deg);
+            }
+
+            33% {
+                -webkit-transform: rotateZ(6deg);
+            }
+
+            35% {
+                -webkit-transform: rotateZ(-4deg);
+            }
+
+            37% {
+                -webkit-transform: rotateZ(2deg);
+            }
+
+            39% {
+                -webkit-transform: rotateZ(-1deg);
+            }
+
+            41% {
+                -webkit-transform: rotateZ(1deg);
+            }
+
+            43% {
+                -webkit-transform: rotateZ(0);
+            }
+
+            100% {
+                -webkit-transform: rotateZ(0);
+            }
+        }
+
+        @-moz-keyframes ring {
+            0% {
+                -moz-transform: rotate(0);
+            }
+
+            1% {
+                -moz-transform: rotate(30deg);
+            }
+
+            3% {
+                -moz-transform: rotate(-28deg);
+            }
+
+            5% {
+                -moz-transform: rotate(34deg);
+            }
+
+            7% {
+                -moz-transform: rotate(-32deg);
+            }
+
+            9% {
+                -moz-transform: rotate(30deg);
+            }
+
+            11% {
+                -moz-transform: rotate(-28deg);
+            }
+
+            13% {
+                -moz-transform: rotate(26deg);
+            }
+
+            15% {
+                -moz-transform: rotate(-24deg);
+            }
+
+            17% {
+                -moz-transform: rotate(22deg);
+            }
+
+            19% {
+                -moz-transform: rotate(-20deg);
+            }
+
+            21% {
+                -moz-transform: rotate(18deg);
+            }
+
+            23% {
+                -moz-transform: rotate(-16deg);
+            }
+
+            25% {
+                -moz-transform: rotate(14deg);
+            }
+
+            27% {
+                -moz-transform: rotate(-12deg);
+            }
+
+            29% {
+                -moz-transform: rotate(10deg);
+            }
+
+            31% {
+                -moz-transform: rotate(-8deg);
+            }
+
+            33% {
+                -moz-transform: rotate(6deg);
+            }
+
+            35% {
+                -moz-transform: rotate(-4deg);
+            }
+
+            37% {
+                -moz-transform: rotate(2deg);
+            }
+
+            39% {
+                -moz-transform: rotate(-1deg);
+            }
+
+            41% {
+                -moz-transform: rotate(1deg);
+            }
+
+            43% {
+                -moz-transform: rotate(0);
+            }
+
+            100% {
+                -moz-transform: rotate(0);
+            }
+        }
+
+        @keyframes ring {
+            0% {
+                transform: rotate(0);
+            }
+
+            1% {
+                transform: rotate(30deg);
+            }
+
+            3% {
+                transform: rotate(-28deg);
+            }
+
+            5% {
+                transform: rotate(34deg);
+            }
+
+            7% {
+                transform: rotate(-32deg);
+            }
+
+            9% {
+                transform: rotate(30deg);
+            }
+
+            11% {
+                transform: rotate(-28deg);
+            }
+
+            13% {
+                transform: rotate(26deg);
+            }
+
+            15% {
+                transform: rotate(-24deg);
+            }
+
+            17% {
+                transform: rotate(22deg);
+            }
+
+            19% {
+                transform: rotate(-20deg);
+            }
+
+            21% {
+                transform: rotate(18deg);
+            }
+
+            23% {
+                transform: rotate(-16deg);
+            }
+
+            25% {
+                transform: rotate(14deg);
+            }
+
+            27% {
+                transform: rotate(-12deg);
+            }
+
+            29% {
+                transform: rotate(10deg);
+            }
+
+            31% {
+                transform: rotate(-8deg);
+            }
+
+            33% {
+                transform: rotate(6deg);
+            }
+
+            35% {
+                transform: rotate(-4deg);
+            }
+
+            37% {
+                transform: rotate(2deg);
+            }
+
+            39% {
+                transform: rotate(-1deg);
+            }
+
+            41% {
+                transform: rotate(1deg);
+            }
+
+            43% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(0);
+            }
+        }
+        /* Bell Icon End*/
+
+        .table-hover>tbody>tr:hover>* {
+            background-color: #d3e5ff !important;
+        }
     </style>
 </head>
 
@@ -196,7 +525,7 @@
                         Total Procurement Request
                     </div>
                     <div class="fw-bold fs-5 mt-1 Shad card-purple-light rounded px-3 py-0">
-                        200 
+                        200
                     </div>
                 </div>
             </div>
@@ -207,18 +536,20 @@
                         Procurement Approved
                     </div>
                     <div class="fw-bold fs-5 mt-1 Shad card-blue-light rounded px-3 py-0 ">
-                        180 
+                        180
                     </div>
                 </div>
             </div>
             <!-- Tender Processed -->
             <div class="col-6 col-md">
                 <div class="mb-1 fw-semibold" style="font-size: 1rem">Tender Processed</div>
-                <div class="card-green text-white status-card d-flex justify-content-between align-items-center p-2 g-5">
+                <div
+                    class="card-green text-white status-card d-flex justify-content-between align-items-center p-2 g-5">
                     <span>Done :</span>
                     <span class="card-green-light rounded px-2 py-0 text-black fw-bold">140</span>
                 </div>
-                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                <div
+                    class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
                     <span>Pending :</span>
                     <span class="card-yellow-light rounded px-2 py-0 fw-bold">40</span>
                 </div>
@@ -230,7 +561,8 @@
                     <span>Done :</span>
                     <span class="card-green-light rounded px-2 py-0 text-black fw-bold">130</span>
                 </div>
-                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                <div
+                    class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
                     <span>Pending :</span>
                     <span class="card-yellow-light rounded px-2 py-0 fw-bold">10</span>
                 </div>
@@ -242,7 +574,8 @@
                     <span>Done :</span>
                     <span class="card-green-light rounded px-2 py-0 text-black fw-bold">100</span>
                 </div>
-                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                <div
+                    class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
                     <span>Pending :</span>
                     <span class="card-yellow-light rounded px-2 py-0 fw-bold">30</span>
                 </div>
@@ -254,7 +587,8 @@
                     <span>Done :</span>
                     <span class="card-green-light rounded px-2 py-0 text-black fw-bold">80</span>
                 </div>
-                <div class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
+                <div
+                    class="card-yellow text-black status-card d-flex justify-content-between align-items-center mt-1 p-2">
                     <span>Pending :</span>
                     <span class="card-yellow-light rounded px-2 py-0 fw-bold">20</span>
                 </div>
@@ -266,7 +600,7 @@
                         Total Procurement Payment
                     </div>
                     <div class="fw-bold fs-5 mt-1 Shad card-red-light rounded px-1 py-0">
-                         <i class="fa fa-rupee"></i>
+                        <i class="fa fa-rupee"></i>
                         2,54,87,895
                     </div>
                 </div>
@@ -278,7 +612,7 @@
                         Total Procurement Penalty
                     </div>
                     <div class="fw-bold fs-5 mt-1 Shad card-skyblue-light rounded px-1 py-0">
-                         <i class="fa fa-rupee"></i>
+                        <i class="fa fa-rupee"></i>
                         4,54,567
                     </div>
                 </div>
@@ -360,6 +694,7 @@
                                 <div class="card">
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <span class="badge bg-danger">2 critical</span>
+                                        <span class="bell fa fa-bell"></span>
                                     </div>
                                     <div class="card-body">
                                         <div class="alert alert-danger mb-1">
@@ -417,410 +752,23 @@
                         <!-- <div class="chart-container">
                             <canvas id="pipelineChart"></canvas>
                         </div> -->
-                        <div class="table-responsive">
-                            <table class="table table-sm">
+                        <div class="table-responsive mt-4">
+                            <table class="table table-sm table-hover" id="progressTable">
                                 <thead>
                                     <tr>
                                         <th>Procurement ID</th>
-                                        <th>Initiate</th>
-                                        <th>Qty. Approval</th>
-                                        <th>Req. Finalize</th>
-                                        <th>Tender</th>
-                                        <th>Vendor Approval</th>
-                                        <th>Work Order</th>
-                                        <th>Delivery</th>
-                                        <th>Completion</th>
+                                        <th class="progress-cell">Initiate</th>
+                                        <th class="progress-cell">Qty. Approval</th>
+                                        <th class="progress-cell">Req. Finalize</th>
+                                        <th class="progress-cell">Tender</th>
+                                        <th class="progress-cell">Vendor Approval</th>
+                                        <th class="progress-cell">Work Order</th>
+                                        <th class="progress-cell">Delivery</th>
+                                        <th class="progress-cell">Completion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>PCH-G/2025/001</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 90%">90%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 40%">40%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-danger" style="width: 55%">55%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 5%">5%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 25%">25%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width:15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 50%">50%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/002</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 100%">100%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 85%">85%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 60%">60%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 40%">40%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/003</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 60%">60%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-danger" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 20%">20%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/004</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 90%">90%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 40%">40%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-danger" style="width: 15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 5%">5%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 25%">25%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width:15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 50%">50%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/005</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 100%">100%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 85%">85%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 60%">60%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 40%">40%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/006</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 60%">60%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-danger" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 20%">20%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/007</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 90%">90%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 40%">40%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-danger" style="width: 15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 5%">5%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 25%">25%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width:15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 50%">50%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/008</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 100%">100%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 85%">85%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 60%">60%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 40%">40%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>PCH-G/2025/009</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: 75%">75%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" style="width: 60%">60%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-danger" style="width: 30%">30%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 10%">10%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 15%">15%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 2%">2%</div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-secondary" style="width: 20%">20%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tr>
+                                    <!-- Table content will be populated by JavaScript -->
                                 </tbody>
                             </table>
                         </div>
@@ -1098,6 +1046,594 @@
             </div>
         </div>
     </div>
+    <!-- Pending Task Start -->
+    <Script>
+        Highcharts.chart('Pendingtask', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Procurement Level'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Procurement'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'  // Changed to show no decimal places
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+                    '<b>{point.y:.0f}</b> of total<br/>'  // Changed to show no decimal places
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'Pending',
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: 'Total Procurement',
+                            y: 100,
+                            drilldown: 'Total Procurement'
+                        },
+                        {
+                            name: 'Procurement for School',
+                            y: 80,
+                            drilldown: 'Procurement for School'
+                        },
+                        {
+                            name: 'Procurement for Self',
+                            y: 20,
+                            drilldown: 'Procurement for Self'
+                        }
+                    ]
+                }
+            ]
+        });
+
+    </Script>
+    <!-- Pending Task End -->
+
+    <!-- Alert & Notification Start -->
+    <Script>
+        Highcharts.chart('alerts', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Vendor Name'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Severity In %'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+                    '<b>{point.y:.2f}%</b> of total<br/>'
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'Severity',
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: 'Sk Construction',
+                            y: 63.06,
+                            drilldown: 'Sk Construction'
+                        },
+                        {
+                            name: 'Rajeev Builcon',
+                            y: 19.84,
+                            drilldown: 'Rajeev Builcon'
+                        },
+                        {
+                            name: 'Sumitra Con.',
+                            y: 4.18,
+                            drilldown: 'Sumitra Con.'
+                        }
+                    ]
+                }
+            ]
+
+        });
+
+    </Script>
+    <!-- Alert & Notification End -->
+
+    <!-- Procurement Pipeline Start -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Validate and sanitize data
+            function validateProcurementData(data) {
+                if (!Array.isArray(data)) {
+                    throw new Error("Data must be an array");
+                }
+
+                const requiredStages = [
+                    'initiate', 'qtyApproval', 'reqFinalize', 'tender',
+                    'vendorApproval', 'workOrder', 'delivery', 'completion'
+                ];
+
+                return data.map(item => {
+                    // Validate ID
+                    if (!item.id || typeof item.id !== 'string') {
+                        throw new Error(`Invalid ID for procurement item: ${JSON.stringify(item)}`);
+                    }
+
+                    // Validate stages
+                    if (!item.stages || typeof item.stages !== 'object') {
+                        throw new Error(`Missing stages for procurement ${item.id}`);
+                    }
+
+                    // Validate each stage value
+                    const validatedStages = {};
+                    requiredStages.forEach(stage => {
+                        let value = item.stages[stage];
+
+                        // Convert to number if it's a string
+                        if (typeof value === 'string') {
+                            value = parseFloat(value);
+                        }
+
+                        // Validate numeric range
+                        if (isNaN(value)) {
+                            console.warn(`Invalid value for ${stage} in ${item.id}, setting to 0`);
+                            value = 0;
+                        } else if (value < 0) {
+                            value = 0;
+                        } else if (value > 100) {
+                            value = 100;
+                        }
+
+                        validatedStages[stage] = value;
+                    });
+
+                    return {
+                        id: item.id,
+                        stages: validatedStages
+                    };
+                });
+            }
+
+            // Sample data with validation
+            let procurementData;
+            try {
+                procurementData = validateProcurementData([
+                    {
+                        id: "PCH-G/2025/001",
+                        stages: {
+                            initiate: 90,
+                            qtyApproval: 75,
+                            reqFinalize: 40,
+                            tender: 55,
+                            vendorApproval: 5,
+                            workOrder: 25,
+                            delivery: 85,
+                            completion: 50
+                        }
+                    },
+                    {
+                        id: "PCH-G/2025/002",
+                        stages: {
+                            initiate: 100,
+                            qtyApproval: 85,
+                            reqFinalize: 60,
+                            tender: 78,
+                            vendorApproval: 10,
+                            workOrder: 40,
+                            delivery: 10,
+                            completion: 30
+                        }
+                    },
+                    {
+                        id: "PCH-G/2025/003",
+                        stages: {
+                            initiate: 75,
+                            qtyApproval: 60,
+                            reqFinalize: 30,
+                            tender: 10,
+                            vendorApproval: 72,
+                            workOrder: 15,
+                            delivery: 2,
+                            completion: 20
+                        }
+                    },
+                    {
+                        id: "PCH-G/2025/004",
+                        stages: {
+                            initiate: 90,
+                            qtyApproval: 75,
+                            reqFinalize: 40,
+                            tender: 55,
+                            vendorApproval: 5,
+                            workOrder: 75,
+                            delivery: 15,
+                            completion: 50
+                        }
+                    },
+                    {
+                        id: "PCH-G/2025/005",
+                        stages: {
+                            initiate: 70,
+                            qtyApproval: 75,
+                            reqFinalize: 40,
+                            tender: 55,
+                            vendorApproval: 45,
+                            workOrder: 25,
+                            delivery: 35,
+                            completion: 80
+                        }
+                    },
+                    {
+                        id: "PCH-G/2025/006",
+                        stages: {
+                            initiate: 60,
+                            qtyApproval: 45,
+                            reqFinalize: 90,
+                            tender: 25,
+                            vendorApproval: 5,
+                            workOrder: 45,
+                            delivery: 65,
+                            completion: 40
+                        }
+                    },
+                    {
+                        id: "PCH-G/2025/007",
+                        stages: {
+                            initiate: 90,
+                            qtyApproval: 35,
+                            reqFinalize: 75,
+                            tender: 55,
+                            vendorApproval: 35,
+                            workOrder: 75,
+                            delivery: 35,
+                            completion: 90
+                        }
+                    },
+                    {
+                        id: "PCH-G/2025/008",
+                        stages: {
+                            initiate: 80,
+                            qtyApproval: 75,
+                            reqFinalize: 60,
+                            tender: 45,
+                            vendorApproval: 25,
+                            workOrder: 45,
+                            delivery: 35,
+                            completion: 70
+                        }
+                    },
+
+                ]);
+            } catch (error) {
+                showError(`Data validation failed: ${error.message}`);
+                return;
+            }
+
+            // Initialize the table
+            populateTable(procurementData);
+
+            // Initialize the chart
+            let progressChart;
+            try {
+                progressChart = initializeChart(procurementData, 'bar');
+            } catch (error) {
+                showError(`Chart initialization failed: ${error.message}`);
+                return;
+            }
+
+            // Set up filter controls
+            setupFilterControls(procurementData);
+
+            // Chart type selector
+            document.getElementById('chartType').addEventListener('change', function () {
+                try {
+                    if (progressChart) progressChart.destroy();
+                    const filteredData = getFilteredData(procurementData);
+                    progressChart = initializeChart(filteredData, this.value);
+                    hideError();
+                } catch (error) {
+                    showError(`Error changing chart type: ${error.message}`);
+                }
+            });
+
+            // Status filter
+            document.getElementById('filterStatus').addEventListener('change', function () {
+                try {
+                    if (progressChart) progressChart.destroy();
+                    const filteredData = getFilteredData(procurementData);
+                    progressChart = initializeChart(filteredData, document.getElementById('chartType').value);
+                    hideError();
+                } catch (error) {
+                    showError(`Error applying status filter: ${error.message}`);
+                }
+            });
+
+            // Procurement filter
+            document.getElementById('filterProcurement').addEventListener('change', function () {
+                try {
+                    if (progressChart) progressChart.destroy();
+                    const filteredData = getFilteredData(procurementData);
+                    progressChart = initializeChart(filteredData, document.getElementById('chartType').value);
+                    hideError();
+                } catch (error) {
+                    showError(`Error applying procurement filter: ${error.message}`);
+                }
+            });
+
+            function showError(message) {
+                const errorElement = document.getElementById('chartError');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                document.getElementById('progressChart').style.display = 'none';
+                console.error(message);
+            }
+
+            function hideError() {
+                document.getElementById('chartError').style.display = 'none';
+                document.getElementById('progressChart').style.display = 'block';
+            }
+
+            function populateTable(data) {
+                const tableBody = document.querySelector('#progressTable tbody');
+                tableBody.innerHTML = '';
+
+                if (!data || data.length === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="9" class="text-center">No procurement data available</td>';
+                    tableBody.appendChild(row);
+                    return;
+                }
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    // Add procurement ID
+                    const idCell = document.createElement('td');
+                    idCell.textContent = item.id;
+                    row.appendChild(idCell);
+
+                    // Add progress bars for each stage
+                    const stages = ['initiate', 'qtyApproval', 'reqFinalize', 'tender', 'vendorApproval', 'workOrder', 'delivery', 'completion'];
+
+                    stages.forEach(stage => {
+                        const value = item.stages[stage];
+                        const cell = document.createElement('td');
+
+                        let bgClass = 'bg-secondary';
+                        if (value >= 70) bgClass = 'bg-success';
+                        else if (value >= 30) bgClass = 'bg-warning';
+                        else if (value > 0) bgClass = 'bg-danger';
+
+                        cell.innerHTML = `
+                        <div class="progress">
+                            <div class="progress-bar ${bgClass}" style="width: ${value}%">${value}%</div>
+                        </div>
+                    `;
+
+                        row.appendChild(cell);
+                    });
+
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function initializeChart(data, type = 'bar') {
+                const ctx = document.getElementById('progressChart').getContext('2d');
+
+                if (!data || data.length === 0) {
+                    throw new Error("No data available to display chart");
+                }
+
+                // Prepare datasets
+                const labels = data.map(item => item.id);
+                const stages = ['initiate', 'qtyApproval', 'reqFinalize', 'tender', 'vendorApproval', 'workOrder', 'delivery', 'completion'];
+                const stageNames = ['Initiate', 'Qty. Approval', 'Req. Finalize', 'Tender', 'Vendor Approval', 'Work Order', 'Delivery', 'Completion'];
+
+                const datasets = type === 'radar' ? stages.map((stage, index) => {
+                    return {
+                        label: stageNames[index],
+                        data: data.map(item => item.stages[stage]),
+                        backgroundColor: getBackgroundColor(stage, 0.5),
+                        borderColor: getBackgroundColor(stage, 1),
+                        borderWidth: 1
+                    };
+                }) : [{
+                    label: 'Average Progress',
+                    data: data.map(item => {
+                        const values = Object.values(item.stages);
+                        return (values.reduce((a, b) => a + b, 0) / values.length);
+                    }),
+                    backgroundColor: data.map((_, i) =>
+                        `hsl(${(i * 360 / data.length)}, 70%, 60%)`
+                    ),
+                    borderColor: data.map((_, i) =>
+                        `hsl(${(i * 360 / data.length)}, 70%, 40%)`
+                    ),
+                    borderWidth: 1
+                }];
+
+                return new Chart(ctx, {
+                    type: type,
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: type === 'radar' ? {
+                            r: {
+                                angleLines: {
+                                    display: true
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 100
+                            }
+                        } : {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: 'Progress (%)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: type === 'radar' ? 'Detailed Progress by Stage' : 'Average Procurement Progress',
+                                font: {
+                                    size: 18
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        if (type === 'radar') {
+                                            return `${stageNames[context.datasetIndex]}: ${context.raw}%`;
+                                        } else {
+                                            return `Average Progress: ${context.raw.toFixed(1)}%`;
+                                        }
+                                    }
+                                }
+                            },
+                            legend: {
+                                display: type === 'radar',
+                                position: 'right'
+                            }
+                        }
+                    }
+                });
+            }
+
+            function getBackgroundColor(stage, opacity = 1) {
+                // Color coding based on stage
+                const colors = {
+                    initiate: `rgba(75, 192, 192, ${opacity})`,
+                    qtyApproval: `rgba(54, 162, 235, ${opacity})`,
+                    reqFinalize: `rgba(255, 206, 86, ${opacity})`,
+                    tender: `rgba(255, 159, 64, ${opacity})`,
+                    vendorApproval: `rgba(153, 102, 255, ${opacity})`,
+                    workOrder: `rgba(255, 99, 132, ${opacity})`,
+                    delivery: `rgba(201, 203, 207, ${opacity})`,
+                    completion: `rgba(75, 192, 192, ${opacity})`
+                };
+
+                return colors[stage] || `rgba(169, 169, 169, ${opacity})`;
+            }
+
+            function setupFilterControls(data) {
+                const procurementSelect = document.getElementById('filterProcurement');
+
+                // Clear existing options except the first one
+                while (procurementSelect.options.length > 1) {
+                    procurementSelect.remove(1);
+                }
+
+                // Add procurement options
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id;
+                    option.textContent = item.id;
+                    procurementSelect.appendChild(option);
+                });
+            }
+
+            function getFilteredData(data) {
+                const statusFilter = document.getElementById('filterStatus').value;
+                const procurementFilter = document.getElementById('filterProcurement').value;
+                const chartType = document.getElementById('chartType').value;
+
+                let filteredData = [...data];
+
+                // Filter by procurement
+                if (procurementFilter !== 'all') {
+                    filteredData = filteredData.filter(item => item.id === procurementFilter);
+                    if (filteredData.length === 0) {
+                        throw new Error("No data matches the selected procurement filter");
+                    }
+                }
+
+                // Filter by status (for radar chart)
+                if (statusFilter !== 'all' && chartType === 'radar') {
+                    filteredData = filteredData.map(item => {
+                        return {
+                            id: item.id,
+                            stages: {
+                                [statusFilter]: item.stages[statusFilter]
+                            }
+                        };
+                    });
+                }
+
+                return filteredData;
+            }
+        });
+    </script>
+    <!-- Procurement Pipeline End -->
 
     <!-- Issue Heatmap Start -->
     <script>
@@ -1439,220 +1975,6 @@
 
     </Script>
     <!-- Vendor Dashboard End -->
-
-    <!-- Pending Task Start -->
-    <Script>
-        Highcharts.chart('Pendingtask', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: ''
-            },
-            subtitle: {
-                text: ''
-            },
-            accessibility: {
-                announceNewData: {
-                    enabled: true
-                }
-            },
-            xAxis: {
-                type: 'category',
-                title: {
-                    text: 'Procurement Level'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Number of Procurement'
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.0f}'  // Changed to show no decimal places
-                    }
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
-                    '<b>{point.y:.0f}</b> of total<br/>'  // Changed to show no decimal places
-            },
-            credits: {
-                enabled: false
-            },
-            series: [
-                {
-                    name: 'Pending',
-                    colorByPoint: true,
-                    data: [
-                        {
-                            name: 'Total Procurement',
-                            y: 100,
-                            drilldown: 'Total Procurement'
-                        },
-                        {
-                            name: 'Procurement for School',
-                            y: 80,
-                            drilldown: 'Procurement for School'
-                        },
-                        {
-                            name: 'Procurement for Self',
-                            y: 20,
-                            drilldown: 'Procurement for Self'
-                        }
-                    ]
-                }
-            ]
-        });
-
-    </Script>
-    <!-- Pending Task End -->
-
-    <!-- Alert & Notification Start -->
-    <Script>
-        Highcharts.chart('alerts', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: ''
-            },
-            subtitle: {
-                text: ''
-            },
-            accessibility: {
-                announceNewData: {
-                    enabled: true
-                }
-            },
-            xAxis: {
-                type: 'category',
-                title: {
-                    text: 'Vendor Name'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Severity In %'
-                }
-
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.1f}%'
-                    }
-                }
-            },
-
-            tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
-                    '<b>{point.y:.2f}%</b> of total<br/>'
-            },
-            credits: {
-                enabled: false
-            },
-            series: [
-                {
-                    name: 'Severity',
-                    colorByPoint: true,
-                    data: [
-                        {
-                            name: 'Sk Construction',
-                            y: 63.06,
-                            drilldown: 'Sk Construction'
-                        },
-                        {
-                            name: 'Rajeev Builcon',
-                            y: 19.84,
-                            drilldown: 'Rajeev Builcon'
-                        },
-                        {
-                            name: 'Sumitra Con.',
-                            y: 4.18,
-                            drilldown: 'Sumitra Con.'
-                        }
-                    ]
-                }
-            ]
-
-        });
-
-    </Script>
-    <!-- Alert & Notification End -->
-
-    <!-- Procurement Pipeline Start -->
-    <script>
-        const pipelineCtx = document.getElementById('pipelineChart').getContext('2d');
-        const pipelineChart = new Chart(pipelineCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Function 1', 'Function 2', 'Function 3'],
-                datasets: [
-                    {
-                        label: 'Planning',
-                        data: [90, 100, 75],
-                        backgroundColor: '#28a745'
-                    },
-                    {
-                        label: 'Bidding',
-                        data: [75, 85, 60],
-                        backgroundColor: '#17a2b8'
-                    },
-                    {
-                        label: 'Awarding',
-                        data: [40, 60, 30],
-                        backgroundColor: '#ffc107'
-                    },
-                    {
-                        label: 'Delivery',
-                        data: [15, 30, 10],
-                        backgroundColor: '#fd7e14'
-                    },
-                    {
-                        label: 'Completion',
-                        data: [5, 10, 2],
-                        backgroundColor: '#6c757d'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        stacked: true,
-                    },
-                    y: {
-                        stacked: true,
-                        max: 100,
-                        min: 0
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-
-    </script>
-    <!-- Procurement Pipeline End -->
 
     <!-- Financial Summary Start -->
     <script>
