@@ -750,19 +750,12 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="chart-container">
-                            <canvas id="pipelineChart"></canvas>
-                        </div> -->
-                        <!-- <div class="progress" data-bs-toggle="tooltip" data-bs-placement="top"
-                            title="${stageNames[stage]}: ${value}%">
-                            <div class="progress-bar ${bgClass}" style="width: ${value}%">${value}%</div>
-                        </div> -->
                         <div class="table-responsive mt-4">
                             <table class="table table-sm table-hover" id="progressTable">
                                 <thead>
                                     <tr>
                                         <th>Procurement ID</th>
-                                        <th class="progress-cell">Initiate</th>
+                                        <!-- <th class="progress-cell">Initiate</th> -->
                                         <th class="progress-cell">Qty. Approval</th>
                                         <th class="progress-cell">Req. Finalize</th>
                                         <th class="progress-cell">Tender</th>
@@ -1216,7 +1209,7 @@
                 }
 
                 const requiredStages = [
-                    'initiate', 'qtyApproval', 'reqFinalize', 'tender',
+                    'qtyApproval', 'reqFinalize', 'tender',
                     'vendorApproval', 'workOrder', 'delivery', 'completion'
                 ];
 
@@ -1268,7 +1261,6 @@
                     {
                         id: "PCH-G/2025/001",
                         stages: {
-                            initiate: 90,
                             qtyApproval: 75,
                             reqFinalize: 40,
                             tender: 55,
@@ -1281,7 +1273,6 @@
                     {
                         id: "PCH-G/2025/002",
                         stages: {
-                            initiate: 100,
                             qtyApproval: 85,
                             reqFinalize: 60,
                             tender: 78,
@@ -1294,7 +1285,6 @@
                     {
                         id: "PCH-G/2025/003",
                         stages: {
-                            initiate: 75,
                             qtyApproval: 60,
                             reqFinalize: 30,
                             tender: 10,
@@ -1307,7 +1297,6 @@
                     {
                         id: "PCH-G/2025/004",
                         stages: {
-                            initiate: 90,
                             qtyApproval: 75,
                             reqFinalize: 40,
                             tender: 55,
@@ -1320,7 +1309,6 @@
                     {
                         id: "PCH-G/2025/005",
                         stages: {
-                            initiate: 70,
                             qtyApproval: 75,
                             reqFinalize: 40,
                             tender: 55,
@@ -1333,7 +1321,6 @@
                     {
                         id: "PCH-G/2025/006",
                         stages: {
-                            initiate: 60,
                             qtyApproval: 45,
                             reqFinalize: 90,
                             tender: 25,
@@ -1346,7 +1333,6 @@
                     {
                         id: "PCH-G/2025/007",
                         stages: {
-                            initiate: 90,
                             qtyApproval: 35,
                             reqFinalize: 75,
                             tender: 55,
@@ -1359,7 +1345,6 @@
                     {
                         id: "PCH-G/2025/008",
                         stages: {
-                            initiate: 80,
                             qtyApproval: 75,
                             reqFinalize: 60,
                             tender: 45,
@@ -1378,54 +1363,6 @@
 
             // Initialize the table
             populateTable(procurementData);
-
-            // Initialize the chart
-            let progressChart;
-            try {
-                progressChart = initializeChart(procurementData, 'bar');
-            } catch (error) {
-                showError(`Chart initialization failed: ${error.message}`);
-                return;
-            }
-
-            // Set up filter controls
-            setupFilterControls(procurementData);
-
-            // Chart type selector
-            document.getElementById('chartType').addEventListener('change', function () {
-                try {
-                    if (progressChart) progressChart.destroy();
-                    const filteredData = getFilteredData(procurementData);
-                    progressChart = initializeChart(filteredData, this.value);
-                    hideError();
-                } catch (error) {
-                    showError(`Error changing chart type: ${error.message}`);
-                }
-            });
-
-            // Status filter
-            document.getElementById('filterStatus').addEventListener('change', function () {
-                try {
-                    if (progressChart) progressChart.destroy();
-                    const filteredData = getFilteredData(procurementData);
-                    progressChart = initializeChart(filteredData, document.getElementById('chartType').value);
-                    hideError();
-                } catch (error) {
-                    showError(`Error applying status filter: ${error.message}`);
-                }
-            });
-
-            // Procurement filter
-            document.getElementById('filterProcurement').addEventListener('change', function () {
-                try {
-                    if (progressChart) progressChart.destroy();
-                    const filteredData = getFilteredData(procurementData);
-                    progressChart = initializeChart(filteredData, document.getElementById('chartType').value);
-                    hideError();
-                } catch (error) {
-                    showError(`Error applying procurement filter: ${error.message}`);
-                }
-            });
 
             function showError(message) {
                 const errorElement = document.getElementById('chartError');
@@ -1453,7 +1390,6 @@
 
                 // Stage names for tooltips
                 const stageNames = {
-                    initiate: 'Initiation',
                     qtyApproval: 'Quantity Approval',
                     reqFinalize: 'Request Finalization',
                     tender: 'Tender Process',
@@ -1472,7 +1408,7 @@
                     row.appendChild(idCell);
 
                     // Add progress bars for each stage
-                    const stages = ['initiate', 'qtyApproval', 'reqFinalize', 'tender', 'vendorApproval', 'workOrder', 'delivery', 'completion'];
+                    const stages = ['qtyApproval', 'reqFinalize', 'tender', 'vendorApproval', 'workOrder', 'delivery', 'completion'];
 
                     stages.forEach(stage => {
                         const value = item.stages[stage];
@@ -1501,159 +1437,6 @@
                 tooltipTriggerList.map(function (tooltipTriggerEl) {
                     return new bootstrap.Tooltip(tooltipTriggerEl);
                 });
-            }
-
-            function initializeChart(data, type = 'bar') {
-                const ctx = document.getElementById('progressChart').getContext('2d');
-
-                if (!data || data.length === 0) {
-                    throw new Error("No data available to display chart");
-                }
-
-                // Prepare datasets
-                const labels = data.map(item => item.id);
-                const stages = ['initiate', 'qtyApproval', 'reqFinalize', 'tender', 'vendorApproval', 'workOrder', 'delivery', 'completion'];
-                const stageNames = ['Initiate', 'Qty. Approval', 'Req. Finalize', 'Tender', 'Vendor Approval', 'Work Order', 'Delivery', 'Completion'];
-
-                const datasets = type === 'radar' ? stages.map((stage, index) => {
-                    return {
-                        label: stageNames[index],
-                        data: data.map(item => item.stages[stage]),
-                        backgroundColor: getBackgroundColor(stage, 0.5),
-                        borderColor: getBackgroundColor(stage, 1),
-                        borderWidth: 1
-                    };
-                }) : [{
-                    label: 'Average Progress',
-                    data: data.map(item => {
-                        const values = Object.values(item.stages);
-                        return (values.reduce((a, b) => a + b, 0) / values.length);
-                    }),
-                    backgroundColor: data.map((_, i) =>
-                        `hsl(${(i * 360 / data.length)}, 70%, 60%)`
-                    ),
-                    borderColor: data.map((_, i) =>
-                        `hsl(${(i * 360 / data.length)}, 70%, 40%)`
-                    ),
-                    borderWidth: 1
-                }];
-
-                return new Chart(ctx, {
-                    type: type,
-                    data: {
-                        labels: labels,
-                        datasets: datasets
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: type === 'radar' ? {
-                            r: {
-                                angleLines: {
-                                    display: true
-                                },
-                                suggestedMin: 0,
-                                suggestedMax: 100
-                            }
-                        } : {
-                            y: {
-                                beginAtZero: true,
-                                max: 100,
-                                title: {
-                                    display: true,
-                                    text: 'Progress (%)'
-                                }
-                            }
-                        },
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: type === 'radar' ? 'Detailed Progress by Stage' : 'Average Procurement Progress',
-                                font: {
-                                    size: 18
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function (context) {
-                                        if (type === 'radar') {
-                                            return `${stageNames[context.datasetIndex]}: ${context.raw}%`;
-                                        } else {
-                                            return `Average Progress: ${context.raw.toFixed(1)}%`;
-                                        }
-                                    }
-                                }
-                            },
-                            legend: {
-                                display: type === 'radar',
-                                position: 'right'
-                            }
-                        }
-                    }
-                });
-            }
-
-            function getBackgroundColor(stage, opacity = 1) {
-                // Color coding based on stage
-                const colors = {
-                    initiate: `rgba(75, 192, 192, ${opacity})`,
-                    qtyApproval: `rgba(54, 162, 235, ${opacity})`,
-                    reqFinalize: `rgba(255, 206, 86, ${opacity})`,
-                    tender: `rgba(255, 159, 64, ${opacity})`,
-                    vendorApproval: `rgba(153, 102, 255, ${opacity})`,
-                    workOrder: `rgba(255, 99, 132, ${opacity})`,
-                    delivery: `rgba(201, 203, 207, ${opacity})`,
-                    completion: `rgba(75, 192, 192, ${opacity})`
-                };
-
-                return colors[stage] || `rgba(169, 169, 169, ${opacity})`;
-            }
-
-            function setupFilterControls(data) {
-                const procurementSelect = document.getElementById('filterProcurement');
-
-                // Clear existing options except the first one
-                while (procurementSelect.options.length > 1) {
-                    procurementSelect.remove(1);
-                }
-
-                // Add procurement options
-                data.forEach(item => {
-                    const option = document.createElement('option');
-                    option.value = item.id;
-                    option.textContent = item.id;
-                    procurementSelect.appendChild(option);
-                });
-            }
-
-            function getFilteredData(data) {
-                const statusFilter = document.getElementById('filterStatus').value;
-                const procurementFilter = document.getElementById('filterProcurement').value;
-                const chartType = document.getElementById('chartType').value;
-
-                let filteredData = [...data];
-
-                // Filter by procurement
-                if (procurementFilter !== 'all') {
-                    filteredData = filteredData.filter(item => item.id === procurementFilter);
-                    if (filteredData.length === 0) {
-                        throw new Error("No data matches the selected procurement filter");
-                    }
-                }
-
-                // Filter by status (for radar chart)
-                if (statusFilter !== 'all' && chartType === 'radar') {
-                    filteredData = filteredData.map(item => {
-                        return {
-                            id: item.id,
-                            stages: {
-                                [statusFilter]: item.stages[statusFilter]
-                            }
-                        };
-                    });
-                }
-
-                return filteredData;
             }
         });
     </script>
